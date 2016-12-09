@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
+using serialcomm.Properties;
+using System.Globalization;
+using System.Threading;
 
 namespace serialcomm
 {
@@ -33,8 +36,8 @@ namespace serialcomm
             }
             else
             {
-                cbChosenSerial.Text = "brak portów"; // nazwa portu gdzie jest Arduino podłączone
-                lbStatusPortu.Text = "brak portów";
+                cbChosenSerial.Text = aStrings.brak_portow; // nazwa portu gdzie jest Arduino podłączone
+                lbStatusPortu.Text = aStrings.brak_portow;
             }
         }
 
@@ -57,16 +60,22 @@ namespace serialcomm
                 {
                     serialPort1.Open(); // otwarcie portu
                     StringBuilder sb = new StringBuilder();
-                    lbStatusPortu.Text = sb.Append(serialPort1.PortName) + " (" + serialPort1.BaudRate + ") Opened.";  // wyświetlenie informacji o otwarciu portu w polu 'stan'
-                    btnOpenClosePort.Text = "Close port";
+                    lbStatusPortu.Text = sb.Append(serialPort1.PortName) + " (" + serialPort1.BaudRate + ") Opened.";
+                        // wyświetlenie informacji o otwarciu portu w polu 'stan'
+                    btnOpenClosePort.Text = aStrings.Close_port;
                 }
-                else  // Jeżeli port nie jest otwarty, otwieramy go
+                else // Jeżeli port  jest otwarty, zamykamy go
                 {
                     this.BeginInvoke(new EventHandler(ClosePort)); // wywołanie metody
                     StringBuilder sb = new StringBuilder();
-                    lbStatusPortu.Text = sb.Append(serialPort1.PortName) + " (" + serialPort1.BaudRate + ") Closed.";  // wyświetlenie informacji o otwarciu portu w polu 'stan'
-                    btnOpenClosePort.Text = "Open";
+                    lbStatusPortu.Text = sb.Append(serialPort1.PortName) + " (" + serialPort1.BaudRate + ") Closed.";
+                        // wyświetlenie informacji o otwarciu portu w polu 'stan'
+                    btnOpenClosePort.Text = aStrings.Openport;
                 }
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                MessageBox.Show("Wybrany port jest zajety");
             }
             catch (Exception ex)
             {
@@ -109,7 +118,7 @@ namespace serialcomm
         }
         void Report(Exception ex)
         {
-            MessageBox.Show(ex.Message + "\n\n" + ex.StackTrace);
+            MessageBox.Show(ex.Message + "\n\n" + ex.GetType()+"\n\n" + ex.StackTrace);
         }
         private void Form1_FormClosed(object sender, FormClosedEventArgs e) // instrukcje jakie mają się wykonac w przypadku wyłączenia okna programu
         {
@@ -137,6 +146,18 @@ namespace serialcomm
             {
                     Report(ex);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+                CultureInfo ci = new CultureInfo("pl-PL");
+                Thread.CurrentThread.CurrentUICulture = ci;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            CultureInfo ci = new CultureInfo("en-US");
+            Thread.CurrentThread.CurrentUICulture = ci;
         }
     }
 }
