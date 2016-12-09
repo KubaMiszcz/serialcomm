@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tbDataContinuoslyReceived = new System.Windows.Forms.TextBox();
             this.btnOpenClosePort = new System.Windows.Forms.Button();
             this.cbBaudrate = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,7 +44,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbStatusPortu = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tbDataReceivedd = new System.Windows.Forms.TextBox();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1.SuspendLayout();
@@ -61,7 +61,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.tbDataReceivedd);
+            this.groupBox1.Controls.Add(this.tbDataContinuoslyReceived);
             this.groupBox1.Controls.Add(this.btnOpenClosePort);
             this.groupBox1.Controls.Add(this.cbBaudrate);
             this.groupBox1.Controls.Add(this.label2);
@@ -77,6 +77,13 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // tbDataContinuoslyReceived
+            // 
+            this.tbDataContinuoslyReceived.Location = new System.Drawing.Point(6, 78);
+            this.tbDataContinuoslyReceived.Name = "tbDataContinuoslyReceived";
+            this.tbDataContinuoslyReceived.Size = new System.Drawing.Size(259, 20);
+            this.tbDataContinuoslyReceived.TabIndex = 8;
             // 
             // btnOpenClosePort
             // 
@@ -150,6 +157,7 @@
             this.btnSend.TabIndex = 2;
             this.btnSend.Text = "Send";
             this.btnSend.UseVisualStyleBackColor = true;
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
             // textBox1
             // 
@@ -195,13 +203,6 @@
             this.lbStatusPortu.Name = "lbStatusPortu";
             this.lbStatusPortu.Size = new System.Drawing.Size(41, 17);
             this.lbStatusPortu.Text = "closed";
-            // 
-            // tbDataReceivedd
-            // 
-            this.tbDataReceivedd.Location = new System.Drawing.Point(6, 78);
-            this.tbDataReceivedd.Name = "tbDataReceivedd";
-            this.tbDataReceivedd.Size = new System.Drawing.Size(259, 20);
-            this.tbDataReceivedd.TabIndex = 8;
             // 
             // toolStripStatusLabel2
             // 
@@ -250,7 +251,7 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel lbStatusPortu;
-        private System.Windows.Forms.TextBox tbDataReceivedd;
+        private System.Windows.Forms.TextBox tbDataContinuoslyReceived;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
     }

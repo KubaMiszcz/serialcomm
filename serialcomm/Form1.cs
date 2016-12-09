@@ -95,7 +95,7 @@ namespace serialcomm
 
         private void DisplayDataReceived(object sender, EventArgs e)
         {
-            tbDataReceivedd.Text = DataReceived; // wstawienie wartości do pola tekstowego
+            tbDataContinuoslyReceived.Text = DataReceived; // wstawienie wartości do pola tekstowego
         }
 
         private void ClosePort(object sender, EventArgs e)
@@ -109,6 +109,11 @@ namespace serialcomm
         private void Form1_FormClosed(object sender, FormClosedEventArgs e) // instrukcje jakie mają się wykonac w przypadku wyłączenia okna programu
         {
             serialPort1.Close();
+        }
+
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
