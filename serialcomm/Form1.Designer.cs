@@ -46,8 +46,12 @@
             this.lbStatusPortu = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.slSlider1 = new System.Windows.Forms.TrackBar();
+            this.btnSendSliderValue = new System.Windows.Forms.Button();
+            this.tbSliderValue = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.slSlider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -61,6 +65,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnSendSliderValue);
+            this.groupBox1.Controls.Add(this.tbSliderValue);
+            this.groupBox1.Controls.Add(this.slSlider1);
             this.groupBox1.Controls.Add(this.tbDataContinuoslyReceived);
             this.groupBox1.Controls.Add(this.btnOpenClosePort);
             this.groupBox1.Controls.Add(this.cbBaudrate);
@@ -73,7 +80,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(352, 159);
+            this.groupBox1.Size = new System.Drawing.Size(352, 265);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
@@ -186,7 +193,7 @@
             this.lbStatusPortu,
             this.toolStripStatusLabel2,
             this.toolStripStatusLabel3});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 179);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 280);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(376, 22);
             this.statusStrip1.TabIndex = 2;
@@ -216,11 +223,41 @@
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
             this.toolStripStatusLabel3.Size = new System.Drawing.Size(0, 17);
             // 
+            // slSlider1
+            // 
+            this.slSlider1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.slSlider1.Location = new System.Drawing.Point(6, 186);
+            this.slSlider1.Maximum = 1023;
+            this.slSlider1.Name = "slSlider1";
+            this.slSlider1.Size = new System.Drawing.Size(340, 45);
+            this.slSlider1.TabIndex = 9;
+            this.slSlider1.TickFrequency = 64;
+            this.slSlider1.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.slSlider1.Value = 512;
+            this.slSlider1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // btnSendSliderValue
+            // 
+            this.btnSendSliderValue.Location = new System.Drawing.Point(271, 236);
+            this.btnSendSliderValue.Name = "btnSendSliderValue";
+            this.btnSendSliderValue.Size = new System.Drawing.Size(75, 23);
+            this.btnSendSliderValue.TabIndex = 10;
+            this.btnSendSliderValue.Text = "Send";
+            this.btnSendSliderValue.UseVisualStyleBackColor = true;
+            this.btnSendSliderValue.Click += new System.EventHandler(this.btnSendSliderValue_Click);
+            // 
+            // tbSliderValue
+            // 
+            this.tbSliderValue.Location = new System.Drawing.Point(6, 237);
+            this.tbSliderValue.Name = "tbSliderValue";
+            this.tbSliderValue.Size = new System.Drawing.Size(259, 20);
+            this.tbSliderValue.TabIndex = 11;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(376, 201);
+            this.ClientSize = new System.Drawing.Size(376, 302);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
@@ -230,6 +267,7 @@
             this.groupBox1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.slSlider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -254,6 +292,9 @@
         private System.Windows.Forms.TextBox tbDataContinuoslyReceived;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.Button btnSendSliderValue;
+        private System.Windows.Forms.TextBox tbSliderValue;
+        private System.Windows.Forms.TrackBar slSlider1;
     }
 }
 

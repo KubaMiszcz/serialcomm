@@ -17,6 +17,7 @@ namespace serialcomm
         public Form1()
         {
             InitializeComponent();
+            tbSliderValue.Text = slSlider1.Value.ToString();
             List<string> portList = new List<string>(SerialPort.GetPortNames());
             if (portList.Count!= 0)
             {
@@ -79,6 +80,10 @@ namespace serialcomm
             try
             {
                     DataReceived = serialPort1.ReadLine(); // odczyt linii 
+                if (DataReceived == "512")
+                {
+                    MessageBox.Show("juhu");
+                }
                     this.BeginInvoke(new EventHandler(DisplayDataReceived)); // wywołanie metody
             }
             catch (Exception ex)
@@ -114,6 +119,24 @@ namespace serialcomm
         private void btnSend_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            tbSliderValue.Text = slSlider1.Value.ToString();
+        }
+
+        private void btnSendSliderValue_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                String sendingData = tbSliderValue.Text;
+                serialPort1.Write(sendingData);
+            }
+            catch (Exception ex)
+            {
+                    Report(ex);
+            }
         }
     }
 }
