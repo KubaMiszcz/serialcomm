@@ -61,7 +61,8 @@ namespace serialcomm
                     serialPort1.Open(); // otwarcie portu
                     StringBuilder sb = new StringBuilder();
                     lbStatusPortu.Text = sb.Append(serialPort1.PortName) + " (" + serialPort1.BaudRate + ") Opened.";
-                        // wyświetlenie informacji o otwarciu portu w polu 'stan'
+                    // wyświetlenie informacji o otwarciu portu w polu 'stan'
+                    MessageBox.Show("sprawdz czy baudrate nadajnika i odbiornika sa takie same");
                     btnOpenClosePort.Text = aStrings.Close_port;
                 }
                 else // Jeżeli port  jest otwarty, zamykamy go
@@ -73,14 +74,13 @@ namespace serialcomm
                     btnOpenClosePort.Text = aStrings.Openport;
                 }
             }
-            catch (UnauthorizedAccessException ex)
+            catch (UnauthorizedAccessException)
             {
                 MessageBox.Show("Wybrany port jest zajety");
             }
             catch (Exception ex)
             {
                 Report(ex);
-                throw;
             }
         }
 
@@ -127,7 +127,17 @@ namespace serialcomm
 
         private void btnSend_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                String sendingData = tbSendingData.Text;
+                serialPort1.Write(sendingData);
+                MessageBox.Show("wyslano: " + sendingData);
+                //serialPort1.ReadLine();
+            }
+            catch (Exception ex)
+            {
+                Report(ex);
+            }
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
@@ -135,12 +145,27 @@ namespace serialcomm
             tbSliderValue.Text = slSlider1.Value.ToString();
         }
 
+        private void tbSliderValue_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                slSlider1.Value = int.Parse(tbSliderValue.Text);
+            }
+            catch (Exception ex)
+            {
+                Report(ex);
+            }
+        }
+
+
         private void btnSendSliderValue_Click(object sender, EventArgs e)
         {
             try
             {
                 String sendingData = tbSliderValue.Text;
                 serialPort1.Write(sendingData);
+                MessageBox.Show("wyslano: " + sendingData);
+                serialPort1.ReadLine();
             }
             catch (Exception ex)
             {
@@ -148,16 +173,27 @@ namespace serialcomm
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-                CultureInfo ci = new CultureInfo("pl-PL");
-                Thread.CurrentThread.CurrentUICulture = ci;
+
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void tbDataReceived_TextChanged(object sender, EventArgs e)
         {
-            CultureInfo ci = new CultureInfo("en-US");
-            Thread.CurrentThread.CurrentUICulture = ci;
+
         }
+
+        //private void button1_Click(object sender, EventArgs e)
+        //{
+        //        CultureInfo ci = new CultureInfo("pl-PL");
+        //        Thread.CurrentThread.CurrentUICulture = ci;
+        //}
+
+        //private void button2_Click(object sender, EventArgs e)
+        //{
+        //    CultureInfo ci = new CultureInfo("en-US");
+        //    Thread.CurrentThread.CurrentUICulture = ci;
+        //}
+
     }
 }

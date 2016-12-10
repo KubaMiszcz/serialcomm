@@ -42,7 +42,7 @@
             this.btnReceive = new System.Windows.Forms.Button();
             this.tbDataReceived = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbSendingData = new System.Windows.Forms.TextBox();
             this.cbChosenSerial = new System.Windows.Forms.ComboBox();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -50,9 +50,13 @@
             this.lbStatusPortu = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.slSlider1)).BeginInit();
             this.statusStrip1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -62,17 +66,9 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnSendSliderValue);
-            this.groupBox1.Controls.Add(this.tbSliderValue);
-            this.groupBox1.Controls.Add(this.slSlider1);
-            this.groupBox1.Controls.Add(this.tbDataContinuoslyReceived);
             this.groupBox1.Controls.Add(this.btnOpenClosePort);
             this.groupBox1.Controls.Add(this.cbBaudrate);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.btnReceive);
-            this.groupBox1.Controls.Add(this.tbDataReceived);
-            this.groupBox1.Controls.Add(this.btnSend);
-            this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.cbChosenSerial);
             this.groupBox1.Controls.Add(this.label1);
             resources.ApplyResources(this.groupBox1, "groupBox1");
@@ -90,6 +86,7 @@
             // 
             resources.ApplyResources(this.tbSliderValue, "tbSliderValue");
             this.tbSliderValue.Name = "tbSliderValue";
+            this.tbSliderValue.TextChanged += new System.EventHandler(this.tbSliderValue_TextChanged);
             // 
             // slSlider1
             // 
@@ -106,6 +103,7 @@
             // 
             resources.ApplyResources(this.tbDataContinuoslyReceived, "tbDataContinuoslyReceived");
             this.tbDataContinuoslyReceived.Name = "tbDataContinuoslyReceived";
+            this.tbDataContinuoslyReceived.ReadOnly = true;
             // 
             // btnOpenClosePort
             // 
@@ -155,6 +153,8 @@
             // 
             resources.ApplyResources(this.tbDataReceived, "tbDataReceived");
             this.tbDataReceived.Name = "tbDataReceived";
+            this.tbDataReceived.ReadOnly = true;
+            this.tbDataReceived.TextChanged += new System.EventHandler(this.tbDataReceived_TextChanged);
             // 
             // btnSend
             // 
@@ -163,10 +163,10 @@
             this.btnSend.UseVisualStyleBackColor = true;
             this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
-            // textBox1
+            // tbSendingData
             // 
-            resources.ApplyResources(this.textBox1, "textBox1");
-            this.textBox1.Name = "textBox1";
+            resources.ApplyResources(this.tbSendingData, "tbSendingData");
+            this.tbSendingData.Name = "tbSendingData";
             // 
             // cbChosenSerial
             // 
@@ -210,19 +210,46 @@
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
             resources.ApplyResources(this.toolStripStatusLabel3, "toolStripStatusLabel3");
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnSendSliderValue);
+            this.groupBox2.Controls.Add(this.slSlider1);
+            this.groupBox2.Controls.Add(this.tbSliderValue);
+            this.groupBox2.Controls.Add(this.tbSendingData);
+            this.groupBox2.Controls.Add(this.btnSend);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.TabStop = false;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.tbDataReceived);
+            this.groupBox3.Controls.Add(this.tbDataContinuoslyReceived);
+            this.groupBox3.Controls.Add(this.btnReceive);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.TabStop = false;
+            // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.slSlider1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -235,7 +262,7 @@
         private System.Windows.Forms.Button btnReceive;
         private System.Windows.Forms.TextBox tbDataReceived;
         private System.Windows.Forms.Button btnSend;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbSendingData;
         private System.Windows.Forms.ComboBox cbChosenSerial;
         private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.ComboBox cbBaudrate;
@@ -250,6 +277,8 @@
         private System.Windows.Forms.Button btnSendSliderValue;
         private System.Windows.Forms.TextBox tbSliderValue;
         private System.Windows.Forms.TrackBar slSlider1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }
 
